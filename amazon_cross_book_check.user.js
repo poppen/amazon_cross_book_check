@@ -35,8 +35,9 @@ var SITEINFO = [
 	},
 	{
 		label: 'eBOOKOFF',
-		url: 'http://www.ebookoff.co.jp/cmdtyallsearch/hdnAllSearchFlg/1/Ctgry/home/LRack/*/SetFlg/?Ctgry=home&LRack=*&hdnPage=0&hdnFormId=cmdtyalllist&hdnStartIndex=0&hdnEndIndex=500&actionNameTxt=&subtotal=&cat=&used=0&pg=0&pagingData=&iStartPageNo=1&nowPageNo=1&hdnCmdtyCode0=0010212095&word=',
-		regexp: /uam texttype01">([\d,]+)/,
+		url: 'http://www.ebookoff.co.jp/cmdtyallsearch/hdnAllSearchFlg/1/Ctgry/*/LRack/*/SetFlg/0?SetFlg=&hdnContinueCmdtyList=&hdnContinueCode=&hdnPage=0&hdnFormId=cmdtyalllist&hdnStartIndex=0&hdnEndIndex=500&hdnNarrowCtgry=&hdnAllSearchFlg=&hdnNarrowFlg=&actionNameTxt=&subtotal=&word=',
+		afterISBN: '&used=0&author=&genre=&size=&pricef=&pricet=&issuef=&issuet=&maker=&isbn=&sort=&desc=&used=0&pg=0&pagingData=&iStartPageNo=1&nowPageNo=1&hdnCmdtyCode0=0010046487',
+		regexp: /fs12 texttype01">([\d,]+)/,
 		isbn13: true,
 		//disabled: true
 	},
@@ -55,14 +56,14 @@ var SITEINFO = [
 ]
 
 var PAGEINFO = [
-	{	
+	{
 		type: 'wishlist_compact',
 		urlExp: 'layout=compact',
 		insertAfter: '//span[@class="small productTitle"]/parent::td/span[last()]',
 		asinLink: '//span[@class="small productTitle"]/strong/a',
 		autoStart: true
 	},
-	{	
+	{
 		type: 'wishlist',
 		urlExp: 'wishlist',
 		insertAfter: '//tbody[@class="itemWrapper"]/tr[3]/td[2]/div[last()]',
@@ -428,7 +429,7 @@ function log(message) {
 function $x(xpath, doc) {
 	var doc = doc || document;
 	if (typeof doc == 'string') doc = createHTMLDocumentByString(doc);
-	var nodes = doc.evaluate(xpath, doc, null, 
+	var nodes = doc.evaluate(xpath, doc, null,
 		XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
 	var data = [];
 	for (var i = 0, len = nodes.snapshotLength; i < len; i++) {
