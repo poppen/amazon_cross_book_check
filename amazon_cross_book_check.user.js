@@ -209,7 +209,7 @@ ACBC.prototype.boot = function(pinfo) {
 			$x(this.pinfo.insertAfter)[0].parentNode.appendChild(startButton);
 		}
 	}
-	GM_addStyle(STYLE);
+	GM_addStyle((STYLE).toString());
 }
 
 ACBC.prototype.singleRun = function(){
